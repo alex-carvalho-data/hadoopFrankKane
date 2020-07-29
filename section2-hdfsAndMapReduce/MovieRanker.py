@@ -1,6 +1,7 @@
 # It sorts all movies by its popularity (how many times it was rated)
 from mrjob.job import MRJob
 from mrjob.step import MRStep
+import logging
 
 
 class MovieRanker(MRJob):
@@ -9,13 +10,15 @@ class MovieRanker(MRJob):
         yield movieId, 1
 
     def reducer_count_movies(self, key, values):
-        yield sum(values), key
+        # Instructor suggestion:
+        # Trick to sort numeric string properly (prefix with zeros)
+        yield str(sum(values)).zfill(5), key
 
-    def reducer_flip_key_value(self, movie_Count, movie_ids):
-        movie_ids_str = ''
+    def reducer_flip_key_value(self, movie_count, movie_ids):
+        # Instructor suggestion:
+        # Reducer returning more lines then the Mapper
         for movie_id in movie_ids:
-            movie_ids_str += movie_id + ' '
-        yield movie_ids_str, movie_Count
+            yield movie_id, movie_count
 
     def steps(self):
         return [
@@ -26,4 +29,8 @@ class MovieRanker(MRJob):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
     MovieRanker.run()
+
+# command to run it using hadoop engine on hdp server
