@@ -24,3 +24,7 @@ class MovieRatings(MRJob):
 
 if __name__ == '__main__':
     MovieRatings.run()
+
+
+# Run it at hadoop cluster
+# python MovieRatings.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar ~/u.data
