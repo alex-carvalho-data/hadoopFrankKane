@@ -1,0 +1,14 @@
+Count up ratings given for each movie
+    - All you need is to change one thing in the mapper - we don't care about ratings now, we care about movie ID's!
+    - Start with this and make sure you can do it.
+    - You can use nano to just edit the existing RatingsBreakdown.py
+
+Stretch goal
+    * Sort the movies by their numbers of ratings
+    * Strategy
+        - Map to (movieID, 1) key/value pairs
+        - Reduce with output of (rating count, movieID)
+        - Send this to a second reducer so we end up with things sorted by rating count!
+    * Gotchas:
+        - How do we set up more than one MapReduce step?
+        - How do we ensure the rating counts are sorted properly?

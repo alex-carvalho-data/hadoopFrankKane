@@ -19,3 +19,8 @@ class RatingsBreakdown(MRJob):
 
 if __name__ == '__main__':
     RatingsBreakdown.run()
+
+# Run it in hadoop cluster
+# python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar ~/u.data
+# Run it locally
+# python RatingsBreakdown.py /home/alex/OneDrive/00alex/courses/udemy/hadoop-tameYourBigData-FrankKane/datasets/moviesUntil98/ml-100k/u.data
