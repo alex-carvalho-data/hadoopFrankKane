@@ -1,4 +1,6 @@
 from pyspark import SparkConf, SparkContext
+# Run it in cluster with spark-submit
+# spark-submit LowestRatedMovies.py
 
 
 # This function just creates a Python "dictionary" we can later use to convert
