@@ -48,7 +48,13 @@ if __name__ == '__main__':
 
     # Print them out, converting movie_id's to names as we go
     for movie in topTenDataFrame:
-        print(movieNames[movie[0]], movie[1], movie[2])
+        print(movieNames[str(movie[0])], movie[1], movie[2])
 
     # Stop the session
     spark.stop()
+
+# To run it in hdp sand box:
+# set spark 2 environment variable
+# [xx]$ export SPARK_MAJOR_VERSION=2
+# invoke spark-submit script
+# [xx]$ spark-submit LowestRatedMovieDF.py
