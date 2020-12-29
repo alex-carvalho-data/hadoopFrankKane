@@ -44,10 +44,14 @@ if __name__ == '__main__':
                                     (accumulated_movie[0] + current_movie[0],
                                      accumulated_movie[1] + current_movie[1]))
 
+    # Filter movies rated at least 10 times
+    filteredRatings = \
+        ratingTotalAndCount.filter(lambda key, value: value[1] >= 10)
+
     # Map to (rating, averageRating)
     averageRatings = \
-        ratingTotalAndCount.mapValues(lambda total_and_count:
-                                      total_and_count[0] / total_and_count[1])
+        filteredRatings.mapValues(lambda total_and_count:
+                                  total_and_count[0] / total_and_count[1])
 
     # Sort by average rating
     sortedMovies = averageRatings.sortBy(lambda x: x[1])

@@ -79,4 +79,4 @@ if __name__ == '__main__':
 # set spark 2 environment variable
 # [xx]$ export SPARK_MAJOR_VERSION=2
 # invoke spark-submit script
-# [xx]$ spark-submit LowestRatedMovieDF.py
+# [xx]$ spark-submit LowestRatedMoviesDF.py
