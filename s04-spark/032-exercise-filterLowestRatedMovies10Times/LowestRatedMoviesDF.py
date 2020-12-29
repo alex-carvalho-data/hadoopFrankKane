@@ -43,8 +43,11 @@ if __name__ == '__main__':
     averageAndCountsDF = \
         averageRatingsDataFrame.join(countsDataFrame, 'movie_id')
 
+    # Filter movies rated at least 10 times
+    filteredTenTimes = averageAndCountsDF.filter('count > 10')
+
     # Pull the top 10 results
-    topTenDataFrame = averageAndCountsDF.orderBy('avg(rating)').take(10)
+    topTenDataFrame = filteredTenTimes.orderBy('avg(rating)').take(10)
 
     # Print them out, converting movie_id's to names as we go
     for movie in topTenDataFrame:
