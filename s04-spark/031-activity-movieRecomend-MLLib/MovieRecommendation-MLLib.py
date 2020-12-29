@@ -50,12 +50,12 @@ if __name__ == '__main__':
     print('\nRatings for user Id 0:')
     userRatings = ratingsDF.filter('user_id = 0')
     for rating in userRatings.collect():
-        print movieNames[rating['movie_id']], rating['rating']
+        print(movieNames[rating['movie_id']], rating['rating'])
 
     print('\nTop 20 recommendations:')
     # Find movies rated more than 100 times
     ratingCountsDF = \
-        ratingsDF.groupby('movie_id').count().filter('count > 100')
+        ratingsDF.groupBy('movie_id').count().filter('count > 100')
     # Construct a 'test' DataFrame for user 0 with every movie rated more than
     # 100 times
     popularMoviesDF = \
@@ -63,6 +63,9 @@ if __name__ == '__main__':
 
     # Run the model on the list of popular movies for user Id 0
     recommendationsDF = model.transform(popularMoviesDF)
+
+    print('recommendationsDF')
+    recommendationsDF.printSchema()
 
     # Get the top 20 movies with the highest predicted rating for user 0
     topRecommendationsDF = \
