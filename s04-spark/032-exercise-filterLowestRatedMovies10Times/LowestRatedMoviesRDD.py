@@ -45,8 +45,9 @@ if __name__ == '__main__':
                                      accumulated_movie[1] + current_movie[1]))
 
     # Filter movies rated at least 10 times
+    # Record format (movieId, (sumOfRatings, totalRatings))
     filteredRatings = \
-        ratingTotalAndCount.filter(lambda key, value: value[1] >= 10)
+        ratingTotalAndCount.filter(lambda record: record[1][1] >= 10)
 
     # Map to (rating, averageRating)
     averageRatings = \
